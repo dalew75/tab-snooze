@@ -44,10 +44,10 @@
    },
    "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAnRqk/RQHdOoogBGbwcrIw5RK0uXGMOKyZxr92uMVCVFIQBbW+T3Is6zumM/iVtPShzuiw2lliuLJzD5rq6K+XDCuCItbI/xpoTCE60ef9MxIiihZHZL85UxhdvVL2+jvAGcdzKRyLGgCJOAu7r4/prXnYYNoN0kiqSIRGTgh4X5QSTn9Aspjr/UerB87BlBzI/0x7duRJdW+5UmXGvw0jISsZRlY2Qq5U2IcRgQFruWUzBvjfHkW/Cpy7q2Ku2xor0FVic3eJ7/3fyYCtOXl6uz50GtQB8vZhDqTpPls9nxuCknz42Plsz0toJU1gG67KajjnT1rd+w2i0zC9q8zDwIDAQAB",
    "manifest_version": 3,
-   "name": "Tab Snooze - Manifest V3",
+   "name": "Tab Snooze - Manifest V3 (MINE)",
    "options_page": "index.html#options/settings",
    "permissions": [ "offscreen", "tabs", "activeTab", "alarms", "storage", "notifications", "idle" ],
-   "short_name": "Tab Snooze",
+   "short_name": "Tab Snooze (MINE)",
    "update_url": "https://clients2.google.com/service/update2/crx",
    "version": "12.0.1",
    "web_accessible_resources": [ {
