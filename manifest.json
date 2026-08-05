@@ -36,6 +36,12 @@
          "suggested_key": {
             "default": "Alt+Shift+S"
          }
+      },
+      "snooze_all_tabs": {
+         "description": "Snooze all tabs in window",
+         "suggested_key": {
+            "default": "Ctrl+Shift+A"
+         }
       }
    },
    "description": "Save articles, videos and todos for later. They'll magically reopen when you need them.",
