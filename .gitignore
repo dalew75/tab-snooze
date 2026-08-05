@@ -1,0 +1,19 @@
+# OS / editor cruft
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editors
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Packaged extension exports (generated, not source)
+*.crx
+*.zip
+
+# Local notes / scratch (maintainer-only)
+NOTES.md
+TODO.md
