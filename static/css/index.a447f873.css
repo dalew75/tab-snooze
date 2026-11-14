@@ -641,3 +641,11 @@ li:has(.ts-wl-threshold)>div:first-child{padding-right:100px}
 @media (max-width:560px){.ts-wl-when{display:none}}
 
 /*# sourceMappingURL=index.a447f873.css.map*/
+.ts-wl-repeat{display:inline-flex;align-items:center;gap:3px;margin-left:8px;padding:1px 7px 1px 5px;border-radius:10px;background:#eef3ff;color:#2f5bd0;font-weight:500}
+.ts-wl-repeat-icon{width:13px;height:13px;fill:currentColor;flex:none}
+.ts-wl-x{flex:none;width:28px;height:28px;padding:0;border:0;border-radius:50%;background:transparent;color:#999;font-size:20px;line-height:28px;text-align:center;cursor:pointer}
+.ts-wl-x:hover{background:#fbe9e9;color:#a33}
+.ts-wl-undo{position:fixed;left:50%;bottom:24px;z-index:20;transform:translateX(-50%);display:flex;align-items:center;gap:16px;max-width:calc(100vw - 32px);padding:10px 12px 10px 16px;border-radius:8px;background:#2b2b33;color:#fff;font-family:Roboto,Helvetica,Arial,sans-serif;font-size:14px;box-shadow:0 6px 20px rgba(0,0,0,.3)}
+.ts-wl-undo-text{min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ts-wl-undo-btn{flex:none;padding:5px 10px;border:0;border-radius:5px;background:transparent;color:#8fb0ff;font:inherit;font-weight:600;cursor:pointer}
+.ts-wl-undo-btn:hover{background:rgba(255,255,255,.1)}
