@@ -4,6 +4,7 @@
 
 ## [Unreleased]
 
+- Added **snooze selected tabs**: shift/ctrl-click several tabs, open the popup, and any snooze option (presets, quick times, pick-a-date, repeat) applies to all of them. The popup shows "Snoozing N selected tabs". Alt-click still snoozes without closing. `snoozeSelectedTabs` in `core/snooze.js` (bundle key `snooze["e"]`). With one tab selected, behavior is unchanged.
 - Added **weekend times** to the This/Next Weekend tile: 9 slots spread across the weekend so items don't all wake at once on Saturday morning. Slots are every 3h from the workday start: 5 on the first weekend day and 4 on the second (e.g. Sat 9a–9p, Sun 9a–6p). `W`/Enter still use the weekend start.
 - Quick-time cells are color-coded by time of day: light yellow for morning, sky blue for afternoon, red for evening. Multi-choice tile headers now show as a pill in the theme color.
 - Added **quick times** to the Later Today tile: a 3×3 grid of small buttons showing the actual clock time the tab will reopen. Times start from now rounded up to the next quarter hour, plus 15m, 30m, 1h, 2h, 3h, 4h, 6h, 8h or 12h. `L`/Enter still use the Later Today setting.

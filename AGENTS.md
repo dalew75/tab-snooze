@@ -9,6 +9,7 @@ This repository is a **personal fork** maintained for bug fixes — the manifest
 - Duplicate-tab and wake-up race-condition fixes (`background.js`).
 - "Repeat last snooze" can no longer create duplicates.
 - Snooze all tabs in window (`Ctrl+Shift+A`), described below.
+- Snooze selected tabs: when more than one tab is highlighted (shift/ctrl-click), the popup's `delayedSnoozeActiveTab` first calls `snoozeSelectedTabs(config)` (`core/snooze.js`, bundle key `snooze["e"]`). It does a single storage write for all selected tabs (with period support and the same duplicate guard as `snoozeTab`) and returns their ids for the popup to close. It returns `null` for 1 or fewer tabs, which falls back to `delayedSnoozeSingleTab` (the original path). A "Snoozing N selected tabs" banner shows in the popup.
 - Pick-a-date fix: `DateSelector` (`10.61c82118.chunk.js`) defaults the hour to the next half-hour when today is selected, instead of `workdayStart`.
 - Removed the `open_snoozed_list` (`Alt+J`) keyboard command, described under Important Files.
 - Quick times in the Later Today tile: `calcQuickTimes()` in `index.js` (next to `calcSnoozeOptions`) adds `quickTimes` to the `later` option. `SnoozeButton.renderQuickTimes` draws a 3×3 grid (styles: `.ts-qt*` in `static/css/index.*.css`). Cells call `onQuickTimeClick`, which goes through `onSnoozeButtonClicked` with `when` overridden. The option's own `when` (Later Today setting) is kept for `L`/Enter/snooze-all.
