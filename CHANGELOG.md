@@ -4,6 +4,7 @@
 
 ## [Unreleased]
 
+- Added a **woken-tabs list**: when 3 or more snoozed tabs wake at the same time, Tab Snooze opens one list tab (in the background) instead of every tab. Click a title to open that tab in the background, or tick some or all tabs and choose **Open selected**, **Snooze selected…** (the full 9-option snooze panel, including quick times, pick-a-date and repeat) or **Remove**. Anything you leave on the list stays saved: the popup shows "N woken tabs waiting" to reopen it, and later batches join the same list. The number is set in Settings → **Smart wakeup**, which replaces upstream's locked Pro placeholder. Set it to 0 to turn the list off.
 - Added **snooze selected tabs**: shift/ctrl-click several tabs, open the popup, and any snooze option (presets, quick times, pick-a-date, repeat) applies to all of them. The popup shows "Snoozing N selected tabs". Alt-click still snoozes without closing. `snoozeSelectedTabs` in `core/snooze.js` (bundle key `snooze["e"]`). With one tab selected, behavior is unchanged.
 - Added **weekend times** to the This/Next Weekend tile: 9 slots spread across the weekend so items don't all wake at once on Saturday morning. Slots are every 3h from the workday start: 5 on the first weekend day and 4 on the second (e.g. Sat 9a–9p, Sun 9a–6p). `W`/Enter still use the weekend start.
 - Quick-time cells are color-coded by time of day: light yellow for morning, sky blue for afternoon, red for evening. Multi-choice tile headers now show as a pill in the theme color.

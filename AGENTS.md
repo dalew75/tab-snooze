@@ -9,6 +9,7 @@ This repository is a **personal fork** maintained for bug fixes — the manifest
 - Duplicate-tab and wake-up race-condition fixes (`background.js`).
 - "Repeat last snooze" can no longer create duplicates.
 - Snooze all tabs in window (`Ctrl+Shift+A`), described below.
+- Woken-tabs list: when `settings.wakeupListThreshold` (default 3, 0 = off) or more tabs wake in one batch, `_handleScheduledWakeup` (`background.js`) calls `wakeupToList` instead of `wakeupTabs`. That moves the records into `chrome.storage.local.wokenTabs` (adding `wokeAt`) and opens or reuses one `index.html#woken-tabs` tab. `WokenTabsPage` (Router module in `index.js`, styles `.ts-wl-*`) lists them: open, remove, or re-snooze through an embedded `SnoozePanel` (`onSnoozeConfig`/`snoozeTargetLabel` props → `runSnooze`). Re-snoozing goes through `snoozeRecords(records, config)` (`core/snooze.js`, bundle key `snooze["f"]`), which `snoozeSelectedTabs` now calls too. The popup shows a "N woken tabs waiting" banner (`openWokenTabsList`). The threshold setting replaces upstream's locked "Smart wakeup" stub in `3.1da4141c.chunk.js`.
 - Snooze selected tabs: when more than one tab is highlighted (shift/ctrl-click), the popup's `delayedSnoozeActiveTab` first calls `snoozeSelectedTabs(config)` (`core/snooze.js`, bundle key `snooze["e"]`). It does a single storage write for all selected tabs (with period support and the same duplicate guard as `snoozeTab`) and returns their ids for the popup to close. It returns `null` for 1 or fewer tabs, which falls back to `delayedSnoozeSingleTab` (the original path). A "Snoozing N selected tabs" banner shows in the popup.
 - Pick-a-date fix: `DateSelector` (`10.61c82118.chunk.js`) defaults the hour to the next half-hour when today is selected, instead of `workdayStart`.
 - Removed the `open_snoozed_list` (`Alt+J`) keyboard command, described under Important Files.
@@ -38,7 +39,7 @@ Three webpack entry points, declared in `manifest.json`:
 
 **Snooze record shape** (`core/storage.js` + `core/wakeup.js`): `{ url, title, favicon, type, sleepStart (ms timestamp), when (ms wake timestamp), period? (recurring) }`.
 
-**`chrome.storage.local` keys:** `snoozedTabs` (the array), `tsVersion`, `tabsCount`, `serverConfig`, `backups`.
+**`chrome.storage.local` keys:** `snoozedTabs` (the array), `wokenTabs` (woken-tabs list), `tsVersion`, `tabsCount`, `serverConfig`, `backups`.
 
 **Snooze-all (hand-added in this fork):** a hand-added command `snooze_all_tabs` (`Ctrl+Shift+A`) opens a `/snooze-all` HashRouter route that reuses `SnoozePanel` in an "all tabs" mode (detected via `window.location.hash`; options filtered to the 7 fixed-time presets). Clicking a preset calls `snoozeAllTabsInWindow(config)` — a hand-added export of `core/snooze.js` (bundle key `snooze["d"]`) that queries `chrome.tabs.query({currentWindow:true})`, excludes the active/picker tab and `chrome://`-style URLs, appends one snooze record per tab, calls `scheduleWakeupAlarm('auto')`, and removes the snoozed tabs. The picker tab is deliberately left open so the window survives. The single-tab popup path (`delayedSnoozeActiveTab` → `snoozeActiveTab` / `snooze["c"]`) is unchanged.
 

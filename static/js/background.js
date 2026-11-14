@@ -4952,7 +4952,8 @@ module.exports = warning;
 /* harmony import */ var _badge__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(31);
 // import { exposeFunctionForDebug } from './utils';
 var STORAGE_KEY_SETTINGS='settings';var DEFAULT_SETTINGS={// General
-badge:_badge__WEBPACK_IMPORTED_MODULE_3__[/* BADGE_HIDDEN */ "b"],playSoundEffects:true,playNotificationSound:true,showNotifications:true,// Snooze times
+badge:_badge__WEBPACK_IMPORTED_MODULE_3__[/* BADGE_HIDDEN */ "b"],playSoundEffects:true,playNotificationSound:true,showNotifications:true,wakeupListThreshold:3,// [woken-list] batches this big open as one list tab (0 = off)
+// Snooze times
 weekStartDay:1,// Sunday(0) or Monday(1)
 weekEndDay:6,// Friday (5) or Saturday(6)
 workdayStart:8,workdayEnd:19,laterTodayHoursDelta:3,somedayMonthsDelta:3,// general data
@@ -5410,7 +5411,15 @@ var WAKEUP_TABS_ALARM_NAME='WAKEUP_TABS_ALARM';/*
     asynchrouneous nature of storage.get/set.
     when alarm goes off, it sets this timestamp to a minute from now, to
     mark that it handles waking up tabs in the next minute.
-*/var wakeupThreshold=new Date(0);/*
+*/var wakeupThreshold=new Date(0);
+// [woken-list feature] When a big batch wakes at once, don't open every tab. Move the
+// records into chrome.storage.local.wokenTabs and open (or reuse) one #woken-tabs list page,
+// where the user opens, removes or re-snoozes them. Mirrors wakeupTabs(): delete from
+// snoozedTabs, resnooze periodic tabs, reschedule. Returns [listTab] for the notification.
+var WOKEN_TABS_KEY='wokenTabs';var WOKEN_TABS_HASH='#woken-tabs';
+async function findWokenTabsListTab(){var base=chrome.runtime.getURL('index.html');var tabs=await chrome.tabs.query({});return tabs.find(function(t){return t.url&&t.url.indexOf(base)===0&&t.url.indexOf(WOKEN_TABS_HASH)!==-1;})||null;}
+async function wakeupToList(tabsToWakeUp){console.log('Waking up '+tabsToWakeUp.length+' tabs into the woken-tabs list');await deleteSnoozedTabs(tabsToWakeUp);for(var i=0;i<tabsToWakeUp.length;i++){if(tabsToWakeUp[i].period){await Object(_snooze__WEBPACK_IMPORTED_MODULE_6__[/* resnoozePeriodicTab */ "b"])(tabsToWakeUp[i]);}}await scheduleWakeupAlarm('auto');var stored=await chrome.storage.local.get(WOKEN_TABS_KEY);var woken=(stored[WOKEN_TABS_KEY]||[]).filter(function(t){return t;});var now=Date.now();tabsToWakeUp.forEach(function(t){var dup=woken.some(function(w){return w.url===t.url&&w.when===t.when;});if(!dup){woken.push(Object.assign({},t,{wokeAt:now}));}});await chrome.storage.local.set({[WOKEN_TABS_KEY]:woken});var listTab=await findWokenTabsListTab();if(!listTab){listTab=await chrome.tabs.create({url:chrome.runtime.getURL('index.html'+WOKEN_TABS_HASH),active:false});}return[listTab];}
+/*
     Delete tabs from storage
 */function deleteSnoozedTabs(_x){return _deleteSnoozedTabs.apply(this,arguments);}/*
     Create tabs, notify user, and delete from storage
@@ -5436,7 +5445,7 @@ if(snoozedTabs.findIndex(function(tab){return!tab;})!==-1){console.error('Found 
 // TEMP FIX, remove null tabs
 snoozedTabs=snoozedTabs.filter(function(tab){return tab;});}// set wakeupThreshold to a minute in the future to include
 // nearby snoozed tabs.
-wakeupThreshold=Object(_utils__WEBPACK_IMPORTED_MODULE_3__[/* addMinutes */ "c"])(now,1);readySleepingTabs=snoozedTabs.filter(function(snoozedTab){return new Date(snoozedTab.when)<=wakeupThreshold;});if(!(readySleepingTabs.length>0)){_context4.next=23;break;}_context4.next=15;return wakeupTabs(readySleepingTabs,false);case 15:createdTabs=_context4.sent;// Notify user
+wakeupThreshold=Object(_utils__WEBPACK_IMPORTED_MODULE_3__[/* addMinutes */ "c"])(now,1);readySleepingTabs=snoozedTabs.filter(function(snoozedTab){return new Date(snoozedTab.when)<=wakeupThreshold;});if(!(readySleepingTabs.length>0)){_context4.next=23;break;}_context4.next=15;return settings.wakeupListThreshold>0&&readySleepingTabs.length>=settings.wakeupListThreshold?wakeupToList(readySleepingTabs):wakeupTabs(readySleepingTabs,false);case 15:createdTabs=_context4.sent;// Notify user
 if(settings.showNotifications){// Show desktop notification
 Object(_utils__WEBPACK_IMPORTED_MODULE_3__[/* notifyUserAboutNewTabs */ "m"])(readySleepingTabs,createdTabs[0]);}if(!settings.playNotificationSound){_context4.next=23;break;}console.log('Playing sound in background script');// Note: handleScheduledWakeup() is ONLY called in background script
 // ensure offscreen document is created
