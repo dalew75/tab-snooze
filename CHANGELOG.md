@@ -4,6 +4,8 @@
 
 ## [Unreleased]
 
+- Added **quick times** to the Later Today tile: a 3×3 grid of small buttons showing the actual clock time the tab will reopen. Times start from now rounded up to the next quarter hour, plus 15m, 30m, 1h, 2h, 3h, 4h, 6h, 8h or 12h. `L`/Enter still use the Later Today setting.
+- Dev: an unpacked install now reloads itself when `dev-reload.txt` changes. `scripts/reload.sh` writes it, and `scripts/install-hooks.sh` adds a post-commit hook that runs it on every commit.
 - Added **"Snooze all tabs in window"** command (`Ctrl+Shift+A`): opens a picker that snoozes every tab in the current window to a chosen time. New `snooze_all_tabs` manifest command, `/snooze-all` route reusing `SnoozePanel`, and `snoozeAllTabsInWindow` in `core/snooze.js`.
 - Fixed: the pick-a-date time now defaults to the next half-hour when today is selected (it used to default to the workday start).
 - Removed: the `Alt+J` "Open snoozed tabs list" keyboard shortcut (`open_snoozed_list` command). The list is still available from the popup.

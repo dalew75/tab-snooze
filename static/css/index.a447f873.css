@@ -589,4 +589,14 @@ textarea,
 }
 
 
+/* [quick-times] fork: small time buttons inside the Later Today tile */
+.ts-qt-wrap{box-sizing:border-box;width:100%;height:100%;padding:4px;display:flex;flex-direction:column;font-family:Roboto,Helvetica,Arial,sans-serif;cursor:default}
+.ts-qt-title{font-size:12px;font-weight:500;text-align:center;line-height:16px;opacity:.8}
+.ts-qt-grid{flex:1;display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:repeat(3,1fr);grid-gap:3px;margin-top:2px}
+.ts-qt{display:flex;flex-direction:column;align-items:center;justify-content:center;border-radius:4px;background:rgba(127,127,127,.13);font-size:11.5px;font-weight:500;line-height:12px;white-space:nowrap;cursor:pointer;transition:background-color .1s,color .1s}
+.ts-qt:hover{background:var(--ts-qt-primary);color:#fff}
+.ts-qt-day{font-size:9px;font-weight:400;opacity:.75}
+.ts-qt-pressed .ts-qt{background:rgba(255,255,255,.15);color:#fff;cursor:default}
+.ts-qt-pressed .ts-qt.ts-qt-picked{background:rgba(255,255,255,.45)}
+
 /*# sourceMappingURL=index.a447f873.css.map*/

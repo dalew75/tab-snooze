@@ -17,3 +17,6 @@ desktop.ini
 # Local notes / scratch (maintainer-only)
 NOTES.md
 TODO.md
+
+# Dev auto-reload stamp (written by scripts/reload.sh)
+dev-reload.txt

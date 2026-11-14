@@ -23506,4 +23506,11 @@ var objectKeys = Object.keys || function (obj) {
 
 /***/ })
 /******/ ]);
+// [dev-reload] fork: auto-reload when loaded unpacked and dev-reload.txt changes.
+// Written by scripts/reload.sh (also run by the git post-commit hook).
+// Inert for store installs (installType !== 'development').
+;(function(){var DEV_RELOAD_ALARM='DEV_RELOAD_ALARM';var STAMP_KEY='devReloadStamp';
+function checkStamp(){return fetch(chrome.runtime.getURL('dev-reload.txt'),{cache:'no-store'}).then(function(r){return r.ok?r.text():null;}).then(function(stamp){if(stamp==null)return;return chrome.storage.session.get(STAMP_KEY).then(function(o){var prev=o[STAMP_KEY];if(prev==null){return chrome.storage.session.set({[STAMP_KEY]:stamp});}if(prev!==stamp){console.log('[dev-reload] change detected, reloading extension');return chrome.storage.session.set({[STAMP_KEY]:stamp}).then(function(){chrome.runtime.reload();});}});}).catch(function(){});}
+chrome.alarms.onAlarm.addListener(function(alarm){if(alarm.name===DEV_RELOAD_ALARM)checkStamp();});
+chrome.management.getSelf().then(function(self){if(self.installType!=='development'){chrome.alarms.clear(DEV_RELOAD_ALARM);return;}chrome.alarms.get(DEV_RELOAD_ALARM).then(function(a){if(!a)chrome.alarms.create(DEV_RELOAD_ALARM,{periodInMinutes:0.05});});checkStamp();}).catch(function(){});})();
 //# sourceMappingURL=background.js.map

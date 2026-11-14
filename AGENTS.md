@@ -11,6 +11,8 @@ This repository is a **personal fork** maintained for bug fixes — the manifest
 - Snooze all tabs in window (`Ctrl+Shift+A`), described below.
 - Pick-a-date fix: `DateSelector` (`10.61c82118.chunk.js`) defaults the hour to the next half-hour when today is selected, instead of `workdayStart`.
 - Removed the `open_snoozed_list` (`Alt+J`) keyboard command, described under Important Files.
+- Quick times in the Later Today tile: `calcQuickTimes()` in `index.js` (next to `calcSnoozeOptions`) adds `quickTimes` to the `later` option. `SnoozeButton.renderQuickTimes` draws a 3×3 grid (styles: `.ts-qt*` in `static/css/index.*.css`). Cells call `onQuickTimeClick`, which goes through `onSnoozeButtonClicked` with `when` overridden. The option's own `when` (Later Today setting) is kept for `L`/Enter/snooze-all.
+- Dev auto-reload, described under Development Commands.
 
 > ⚠️ **There is no source tree here.** This repo ships **only the built/compiled extension**: no `package.json`, no build configuration, no `.ts`/`.tsx`/`.jsx` source, no test suite, no README. The files under `static/js/` are minified webpack production bundles. The closest thing to readable source is the `sourcesContent` embedded inside the `*.js.map` files — treat those as the reference, not the `.js` bundles.
 
@@ -65,6 +67,8 @@ Three webpack entry points, declared in `manifest.json`:
 2. Open `chrome://extensions` in Chrome, enable **Developer mode**.
 3. **Load unpacked** (or click ↻ Reload on the existing entry) pointing at the repo root.
 4. Exercise the change via the toolbar popup, keyboard shortcuts, or `chrome://extensions → Inspect views: service worker`.
+
+**Auto-reload (Brave/Chrome, unpacked):** the Brave Default profile loads this repo unpacked. When `installType === 'development'`, `background.js` polls `dev-reload.txt` (gitignored) every ~3s via `DEV_RELOAD_ALARM` and calls `chrome.runtime.reload()` when it changes. Run `scripts/reload.sh` to trigger it. `scripts/install-hooks.sh` installs a git post-commit hook that does this on every commit. Hooks aren't versioned, so re-run the installer after a fresh clone. The extension's own HTML/CSS/JS loads fresh from disk on next open anyway; the reload is what picks up service-worker and manifest changes.
 
 To read logic before editing, open the matching `*.js.map` (its `sourcesContent` holds the pre-minification code with real names like `handleScheduledWakeup`, `WAKEUP_TABS_ALARM_NAME`, `core/snooze.js`).
 
