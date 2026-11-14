@@ -19,7 +19,7 @@ This repository is a **personal fork** maintained for bug fixes — the manifest
 - Last-picked quick time: `renderQuickTimes` saves the clicked slot index per option id (`later`, `next_week`, `in_a_month`) to `localStorage.tsLastQuickTime` and adds `.ts-qt-last` (charcoal inset border) to that slot next time.
 - Dev auto-reload, described under Development Commands.
 
-> ⚠️ **There is no source tree here.** This repo ships **only the built/compiled extension**: no `package.json`, no build configuration, no `.ts`/`.tsx`/`.jsx` source, no test suite, no README. The files under `static/js/` are minified webpack production bundles. The closest thing to readable source is the `sourcesContent` embedded inside the `*.js.map` files — treat those as the reference, not the `.js` bundles.
+> ⚠️ **There is no source tree here.** This repo ships **only the built/compiled extension**: no `package.json`, no build configuration, no `.ts`/`.tsx`/`.jsx` source, no test suite, no README. The files under `static/js/` are minified webpack production bundles. The closest thing to readable source is the `sourcesContent` embedded inside the `*.js.map` files — treat those as the reference, not the `.js` bundles. **The `*.map` files are gitignored and exist only in the maintainer's local checkout** (they contain upstream's original source, so they're kept out of the public repo). A fresh clone has none; back them up before wiping the working tree.
 
 ## Architecture & Data Flow
 

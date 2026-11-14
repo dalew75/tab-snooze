@@ -100,7 +100,7 @@ Tab Snooze requests the following permissions so it can do its job:
 
 ## FAQ
 
-**Where's the source code?** — This fork ships the **built** extension only (minified bundles under `static/js/`); there is no TypeScript/JSX source tree. The `.js.map` files contain the original sources if you want to inspect logic.
+**Where's the source code?** — This fork ships the **built** extension only (minified bundles under `static/js/`); there is no TypeScript/JSX source tree. The upstream source maps (`*.js.map`) are deliberately not published here, since they contain the original author's full source; only the minified bundles are included.
 
 **Will it auto-update?** — No — extensions loaded unpacked don't auto-update. See **Updating to a new version** above.
 

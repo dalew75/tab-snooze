@@ -20,3 +20,6 @@ TODO.md
 
 # Dev auto-reload stamp (written by scripts/reload.sh)
 dev-reload.txt
+
+# Source maps hold the upstream original source; kept local only, not published
+*.map
