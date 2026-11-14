@@ -82,7 +82,6 @@ Open the options page (`chrome://extensions` → extension details → "Extensio
 | --- | --- |
 | `Alt+S` | Snooze active tab |
 | `Ctrl+Shift+1` | New todo tab |
-| `Alt+J` | Open snoozed tabs list |
 | `Alt+Shift+S` | Repeat last snooze action |
 | `Ctrl+Shift+A` | Snooze all tabs in window |
 
@@ -115,7 +114,7 @@ If you want to understand the architecture, edit the bundles, or fix a bug, see 
 
 ## License
 
-MIT — see [LICENSE](./LICENSE).
+This fork's own changes and documentation are MIT-licensed; see [LICENSE](./LICENSE). The upstream Tab Snooze code belongs to its original authors and is **not** relicensed here; see [NOTICE](./NOTICE).
 
 ## Acknowledgements
 

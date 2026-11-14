@@ -5,6 +5,9 @@
 ## [Unreleased]
 
 - Added **"Snooze all tabs in window"** command (`Ctrl+Shift+A`): opens a picker that snoozes every tab in the current window to a chosen time. New `snooze_all_tabs` manifest command, `/snooze-all` route reusing `SnoozePanel`, and `snoozeAllTabsInWindow` in `core/snooze.js`.
+- Fixed: the pick-a-date time now defaults to the next half-hour when today is selected (it used to default to the workday start).
+- Removed: the `Alt+J` "Open snoozed tabs list" keyboard shortcut (`open_snoozed_list` command). The list is still available from the popup.
+- Docs: added `CLAUDE.md` (points to `AGENTS.md`) and `NOTICE`; scoped the MIT license to fork changes only.
 
 ## [12.0.1] - fork
 

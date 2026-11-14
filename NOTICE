@@ -1,0 +1,19 @@
+Tab Snooze (MINE) — personal fork
+
+This repository is an unofficial, personal fork of the Tab Snooze browser
+extension (https://tabsnooze.com) by csandapp (the original `author` in
+manifest.json).
+
+The original extension's code and assets are copyright of their original
+authors and are used under their original terms. They are NOT relicensed
+by this repository's LICENSE file. This covers:
+
+  - static/            (compiled JavaScript bundles, source maps, CSS, media)
+  - fonts/, images/, sounds/
+  - index.html, offscreen.html
+  - manifest.json
+
+The MIT License in LICENSE applies only to the modifications and
+documentation written for this fork (for example the hand-edited fixes
+listed in CHANGELOG.md, plus README.md, AGENTS.md, CHANGELOG.md and
+CLAUDE.md).

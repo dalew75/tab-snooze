@@ -4,7 +4,13 @@
 
 Tab Snooze is a Chrome browser extension (Manifest V3, v12.0.1) that lets users "snooze" tabs, todos, and links so they automatically reopen at a chosen later time. The toolbar popup presents preset wake times; a background service worker reopens the tabs when the scheduled time arrives.
 
-This repository is a **personal fork** maintained for bug fixes — the manifest `name`/`short_name` carry a `(MINE)` suffix, and the 5-commit `main` history consists of direct edits to built files (duplicate-tab, repeat-last-snooze, and race-condition fixes).
+This repository is a **personal fork** maintained for bug fixes — the manifest `name`/`short_name` carry a `(MINE)` suffix, and every change on `main` is a direct edit to the built files. Fork changes so far (see `CHANGELOG.md` for the running list):
+
+- Duplicate-tab and wake-up race-condition fixes (`background.js`).
+- "Repeat last snooze" can no longer create duplicates.
+- Snooze all tabs in window (`Ctrl+Shift+A`), described below.
+- Pick-a-date fix: `DateSelector` (`10.61c82118.chunk.js`) defaults the hour to the next half-hour when today is selected, instead of `workdayStart`.
+- Removed the `open_snoozed_list` (`Alt+J`) keyboard command, described under Important Files.
 
 > ⚠️ **There is no source tree here.** This repo ships **only the built/compiled extension**: no `package.json`, no build configuration, no `.ts`/`.tsx`/`.jsx` source, no test suite, no README. The files under `static/js/` are minified webpack production bundles. The closest thing to readable source is the `sourcesContent` embedded inside the `*.js.map` files — treat those as the reference, not the `.js` bundles.
 
@@ -30,7 +36,7 @@ Three webpack entry points, declared in `manifest.json`:
 
 **`chrome.storage.local` keys:** `snoozedTabs` (the array), `tsVersion`, `tabsCount`, `serverConfig`, `backups`.
 
-**Snooze-all (hand-added in this fork):** a fifth command `snooze_all_tabs` (`Ctrl+Shift+A`) opens a `/snooze-all` HashRouter route that reuses `SnoozePanel` in an "all tabs" mode (detected via `window.location.hash`; options filtered to the 7 fixed-time presets). Clicking a preset calls `snoozeAllTabsInWindow(config)` — a hand-added export of `core/snooze.js` (bundle key `snooze["d"]`) that queries `chrome.tabs.query({currentWindow:true})`, excludes the active/picker tab and `chrome://`-style URLs, appends one snooze record per tab, calls `scheduleWakeupAlarm('auto')`, and removes the snoozed tabs. The picker tab is deliberately left open so the window survives. The single-tab popup path (`delayedSnoozeActiveTab` → `snoozeActiveTab` / `snooze["c"]`) is unchanged.
+**Snooze-all (hand-added in this fork):** a hand-added command `snooze_all_tabs` (`Ctrl+Shift+A`) opens a `/snooze-all` HashRouter route that reuses `SnoozePanel` in an "all tabs" mode (detected via `window.location.hash`; options filtered to the 7 fixed-time presets). Clicking a preset calls `snoozeAllTabsInWindow(config)` — a hand-added export of `core/snooze.js` (bundle key `snooze["d"]`) that queries `chrome.tabs.query({currentWindow:true})`, excludes the active/picker tab and `chrome://`-style URLs, appends one snooze record per tab, calls `scheduleWakeupAlarm('auto')`, and removes the snoozed tabs. The picker tab is deliberately left open so the window survives. The single-tab popup path (`delayedSnoozeActiveTab` → `snoozeActiveTab` / `snooze["c"]`) is unchanged.
 
 ## Key Directories
 
@@ -74,7 +80,8 @@ To read logic before editing, open the matching `*.js.map` (its `sourcesContent`
 
 ## Important Files
 
-- `manifest.json` — MV3 entry points, permissions (`offscreen,tabs,activeTab,alarms,storage,notifications,idle`), the 5 keyboard commands, pinned extension `key`, Web Store `update_url`.
+- `manifest.json` — MV3 entry points, permissions (`offscreen,tabs,activeTab,alarms,storage,notifications,idle`), the 4 keyboard commands (`_execute_action` Alt+S, `new_todo_page` Ctrl+Shift+1, `repeat_last_snooze` Alt+Shift+S, `snooze_all_tabs` Ctrl+Shift+A), pinned extension `key`, Web Store `update_url`.
+  - The upstream `open_snoozed_list` command (`Alt+J`) was removed from `commands` on purpose in this fork. Its handler is still in `core/commands.js` / `background.js`, and the snoozed list is still reachable from the popup. To restore the shortcut, add the block back under `commands`. Don't park disabled commands under a made-up top-level manifest key, because Chrome warns about unknown keys.
 - `static/js/background.js` — service worker: `runBackgroundScript`, `registerEventListeners`, `handleScheduledWakeup`, `scheduleWakeupAlarm`, `ensureOffscreenDocument`, idle-based reschedule.
 - `static/js/index.js` — React UI bundle: `SnoozePanel`, `Router`, snooze-option presets, `core/storage` + `core/snooze` calls, in-popup `window.Audio()` snooze sound.
 - `static/js/offscreen.js` — `chrome.runtime.onMessage` handler for `playAudio`; delegates to `core/audio.js` (`playAudio`/`loadAudio`).
@@ -95,5 +102,5 @@ To read logic before editing, open the matching `*.js.map` (its `sourcesContent`
   - Inspect the service worker via `chrome://extensions → Inspect views: service worker` for `console.log`/`console.error` output (the code logs e.g. `'Playing sound in background script'`, `'Found null in snoozedTabs'`).
   - Inspect the popup via right-click → Inspect.
   - Exercise wake-up by snoozing a tab to "1 minute", then watching the alarm fire, tab reopen, notification, and (if enabled) the offscreen sound.
-  - Test the keyboard commands: `Alt+S` (snooze active tab), `Ctrl+Shift+1` (new todo), `Alt+J` (snoozed list), `Alt+Shift+S` (repeat last snooze), `Ctrl+Shift+A` (snooze all tabs in window).
+  - Test the keyboard commands: `Alt+S` (snooze active tab), `Ctrl+Shift+1` (new todo), `Alt+Shift+S` (repeat last snooze), `Ctrl+Shift+A` (snooze all tabs in window).
 - **Known race/dedup guards already in the code** (relevant when touching wake-up): `wakeupThreshold` is advanced to `now+1min` immediately after the check to prevent double-wake; `handleScheduledWakeup` filters out `null` records defensively ("Found null in snoozedTabs").
