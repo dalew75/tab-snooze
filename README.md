@@ -2,7 +2,7 @@
 
 > Save articles, videos and todos for later — they magically reopen when you need them.
 
-Tab Snooze lets you snooze any browser tab (or a to-do / link) to a later time. When the time arrives, the tab reopens automatically — optionally with a desktop notification and sound. This is a **personal fork** of the upstream Tab Snooze (MV3, v12.0.1) carrying small bug fixes, so expectations are set for visitors landing on this repo.
+Tab Snooze lets you snooze any browser tab (or a to-do / link) to a later time. When the time arrives, the tab reopens automatically — optionally with a desktop notification and sound. This is a **personal fork** of Tab Snooze (MV3, v12.0.1) with bug fixes (no more duplicate tabs) and batch-snoozing features. **[Why I made this version →](./WHY.md)**
 
 <!-- TODO: drop a screenshot of the popup here, e.g. docs/popup.png -->
 
@@ -100,7 +100,7 @@ Tab Snooze requests the following permissions so it can do its job:
 
 ## FAQ
 
-**Where's the source code?** — This fork ships the **built** extension only (minified bundles under `static/js/`); there is no TypeScript/JSX source tree. The upstream source maps (`*.js.map`) are deliberately not published here, since they contain the original author's full source; only the minified bundles are included.
+**Where's the source code?** — This fork ships the **built** extension only (minified bundles under `static/js/`); there is no TypeScript/JSX source tree. The `.js.map` files contain the original sources if you want to inspect logic. The upstream continuation's source is public at [csandapp/tab-snooze-extension-continued](https://github.com/csandapp/tab-snooze-extension-continued), though it has moved on since this fork's base.
 
 **Will it auto-update?** — No — extensions loaded unpacked don't auto-update. See **Updating to a new version** above.
 
@@ -118,4 +118,7 @@ This fork's own changes and documentation are MIT-licensed; see [LICENSE](./LICE
 
 ## Acknowledgements
 
-Based on [Tab Snooze](https://tabsnooze.com) by csandapp (original `author` in manifest). This is an independent personal fork.
+- [Tab Snooze](https://tabsnooze.com): the original extension, by its original developer.
+- [Tab Snooze - Manifest V3](https://chromewebstore.google.com/detail/kgnigbfnfjgpfaiaafcbgdkpalapiinb) by csandapp ([source](https://github.com/csandapp/tab-snooze-extension-continued)): the continuation that kept it alive on Manifest V3, and the build this fork started from.
+
+This is an independent personal fork, not affiliated with either. See [NOTICE](./NOTICE) for the full history and licensing.

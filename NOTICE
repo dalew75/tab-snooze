@@ -1,12 +1,31 @@
 Tab Snooze (MINE) — personal fork
 
-This repository is an unofficial, personal fork of the Tab Snooze browser
-extension (https://tabsnooze.com) by csandapp (the original `author` in
-manifest.json).
+Where this code comes from
+--------------------------
 
-The original extension's code and assets are copyright of their original
-authors and are used under their original terms. They are NOT relicensed
-by this repository's LICENSE file. This covers:
+1. Tab Snooze (https://tabsnooze.com) — the original extension, by its
+   original developer. Its source was never published and no license was
+   ever granted for it, as far as this fork's maintainer could find.
+
+2. Tab Snooze - Manifest V3, by csandapp — a continuation that kept the
+   extension working after Chrome moved to Manifest V3.
+     Chrome Web Store:
+       https://chromewebstore.google.com/detail/kgnigbfnfjgpfaiaafcbgdkpalapiinb
+     Source code (public, no license file):
+       https://github.com/csandapp/tab-snooze-extension-continued
+   csandapp's listing credits the original developer of Tab Snooze.
+
+3. This repository — an unofficial personal fork. It started from the
+   built extension (v12.0.1) as installed from csandapp's Chrome Web Store
+   listing, not from csandapp's GitHub source, and has been changed by
+   hand-editing those built files since.
+
+Licensing
+---------
+
+Neither upstream (1 or 2) publishes a license, so their code and assets
+remain the property of their authors and are NOT relicensed by this
+repository's LICENSE file. This covers:
 
   - static/            (compiled JavaScript bundles, source maps, CSS, media)
   - fonts/, images/, sounds/
@@ -14,6 +33,9 @@ by this repository's LICENSE file. This covers:
   - manifest.json
 
 The MIT License in LICENSE applies only to the modifications and
-documentation written for this fork (for example the hand-edited fixes
-listed in CHANGELOG.md, plus README.md, AGENTS.md, CHANGELOG.md and
+documentation written for this fork (for example the hand-edited changes
+listed in CHANGELOG.md, plus README.md, WHY.md, AGENTS.md, CHANGELOG.md and
 CLAUDE.md).
+
+If you are an upstream author and want anything here changed or removed,
+please open an issue on this repository.
