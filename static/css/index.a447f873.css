@@ -600,6 +600,8 @@ textarea,
 .ts-qt-afternoon{background:#bfe3fb;color:#0d3a5c}
 .ts-qt-evening{background:#f9b9ad;color:#5c1409}
 .ts-qt:hover{background:var(--ts-qt-primary);color:#fff}
+.ts-qt.ts-qt-last{box-shadow:inset 0 0 0 2px #36454f}
+.ts-qt-pressed .ts-qt.ts-qt-last{box-shadow:none}
 .ts-qt-day{font-size:9px;font-weight:400;opacity:.75}
 .ts-qt-pressed .ts-qt{background:rgba(255,255,255,.15);color:#fff;cursor:default}
 .ts-qt-pressed .ts-qt.ts-qt-picked{background:rgba(255,255,255,.45)}
