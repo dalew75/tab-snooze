@@ -86,6 +86,7 @@ To read logic before editing, open the matching `*.js.map` (its `sourcesContent`
 - **Routing:** react-router-dom `HashRouter`. The two manifest-pinned entry hashes are `index.html#popup` (toolbar action) and `index.html#options/settings` (options page); views are code-split into the numbered chunks.
 - **Chrome APIs in use:** `tabs`, `activeTab`, `alarms`, `storage.local`, `notifications`, `idle`, `offscreen`, `commands`, `runtime.sendMessage`/`onMessage`.
 - **Maintenance convention:** keep hand-edits minimal and localized; the duplicate-tab / race-condition fixes in git history are the model. Prefer editing the smallest bundle that contains the target logic.
+- **Commit and push after every update:** once a change is done, commit it (conventional-commit style, matching history) and push `main` to `origin` right away. Don't leave finished work uncommitted or unpushed.
 
 ## Important Files
 
