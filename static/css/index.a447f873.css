@@ -591,9 +591,14 @@ textarea,
 
 /* [quick-times] fork: small time buttons inside the Later Today tile */
 .ts-qt-wrap{box-sizing:border-box;width:100%;height:100%;padding:4px;display:flex;flex-direction:column;font-family:Roboto,Helvetica,Arial,sans-serif;cursor:default}
-.ts-qt-title{font-size:12px;font-weight:500;text-align:center;line-height:16px;opacity:.8}
-.ts-qt-grid{flex:1;display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:repeat(3,1fr);grid-gap:3px;margin-top:2px}
+.ts-qt-title{align-self:center;padding:1px 10px;border-radius:9px;background:var(--ts-qt-primary);color:#fff;font-size:12.5px;font-weight:700;letter-spacing:.3px;text-align:center;line-height:17px;box-shadow:0 1px 3px rgba(0,0,0,.25)}
+.ts-qt-pressed .ts-qt-title{background:rgba(255,255,255,.25);box-shadow:none}
+.ts-qt-grid{flex:1;display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:repeat(3,1fr);grid-gap:3px;margin-top:4px}
 .ts-qt{display:flex;flex-direction:column;align-items:center;justify-content:center;border-radius:4px;background:rgba(127,127,127,.13);font-size:11.5px;font-weight:500;line-height:12px;white-space:nowrap;cursor:pointer;transition:background-color .1s,color .1s}
+/* [quick-times] fork: time-of-day colors (morning sun / afternoon sky / evening red light) */
+.ts-qt-morning{background:#fff3b0;color:#4a3d00}
+.ts-qt-afternoon{background:#bfe3fb;color:#0d3a5c}
+.ts-qt-evening{background:#f9b9ad;color:#5c1409}
 .ts-qt:hover{background:var(--ts-qt-primary);color:#fff}
 .ts-qt-day{font-size:9px;font-weight:400;opacity:.75}
 .ts-qt-pressed .ts-qt{background:rgba(255,255,255,.15);color:#fff;cursor:default}

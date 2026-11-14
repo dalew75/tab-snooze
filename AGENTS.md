@@ -12,6 +12,7 @@ This repository is a **personal fork** maintained for bug fixes — the manifest
 - Pick-a-date fix: `DateSelector` (`10.61c82118.chunk.js`) defaults the hour to the next half-hour when today is selected, instead of `workdayStart`.
 - Removed the `open_snoozed_list` (`Alt+J`) keyboard command, described under Important Files.
 - Quick times in the Later Today tile: `calcQuickTimes()` in `index.js` (next to `calcSnoozeOptions`) adds `quickTimes` to the `later` option. `SnoozeButton.renderQuickTimes` draws a 3×3 grid (styles: `.ts-qt*` in `static/css/index.*.css`). Cells call `onQuickTimeClick`, which goes through `onSnoozeButtonClicked` with `when` overridden. The option's own `when` (Later Today setting) is kept for `L`/Enter/snooze-all.
+- Weekend times: `calcWeekendTimes(weekendTime)` adds `quickTimes` to the `weekend` option (9 slots, `WEEKEND_TIME_SLOTS`, every 3h from day start over both weekend days). It reuses the same grid. Each quick time has a `tod` (`quickTimeOfDay`: morning/afternoon/evening) that adds a `.ts-qt-<tod>` color class.
 - Dev auto-reload, described under Development Commands.
 
 > ⚠️ **There is no source tree here.** This repo ships **only the built/compiled extension**: no `package.json`, no build configuration, no `.ts`/`.tsx`/`.jsx` source, no test suite, no README. The files under `static/js/` are minified webpack production bundles. The closest thing to readable source is the `sourcesContent` embedded inside the `*.js.map` files — treat those as the reference, not the `.js` bundles.
