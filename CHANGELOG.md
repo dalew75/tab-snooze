@@ -4,6 +4,7 @@
 
 ## [Unreleased]
 
+- **Woken-tabs list**: each row now has its own **Snooze** button that opens the snooze panel for just that tab, so you don't have to tick its checkbox first. Your checkbox selections are left as they were.
 - **Woken-tabs list**: repeating tabs now show the repeat icon and their schedule (e.g. "Every Mon, Wed at 9:00 am") next to the site name. Each row has an **×** to remove just that tab; an **Undo** bar stays for 5 seconds after (several quick removals undo together).
 - **Last pick is outlined**: in the Later Today, Next Week and Next Month grids, the slot you chose last time (by position) gets a charcoal border, so you can repeat it at a glance. Saved per tile in `localStorage` (`tsLastQuickTime`).
 - Added **next week times** and **next month times**. The Next Week tile now has 9 slots across next week's workdays: the workday start and 4 hours later each day (e.g. Mon 9a, Mon 1p … Thu 1p, Fri 9a). "In a Month" is renamed **Next Month** and has 9 workdays spread across next calendar month, about every 3–4 days, at the workday start. A date that falls on the weekend moves to the next workday. Keyboard selection and snooze-all still use the old single times (start of next week; one month from today).
