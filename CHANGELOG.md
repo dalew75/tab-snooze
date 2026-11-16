@@ -4,6 +4,8 @@
 
 ## [Unreleased]
 
+- **Woken-tabs list** automatically closes three seconds after it becomes empty. Per-row dismissal keeps the five-second Undo window first. New items cancel the close timer, and storage is checked again before closing.
+
 - Added Settings → **Visible Snooze Groups** with nine switches. Hidden groups are removed from snooze dialogs; letter shortcuts retain their group and arrow/numpad navigation follows visible tiles. At least one of the six always-available timed presets stays enabled for snooze-all.
 - Replaced **Someday** with **This Week**: nine slots spread across work hours from the day after tomorrow until the configured weekend, using workday start/evening settings. The tile hides when no slots remain.
 
