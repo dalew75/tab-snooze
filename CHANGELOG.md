@@ -4,6 +4,7 @@
 
 ## [Unreleased]
 
+- **Hover-revealed snooze times**: multi-time groups show their original icon/title tile until hovered. **This Evening/Tomorrow Eve** now offers nine times at 30-minute intervals from the configured evening start, and **Tomorrow** offers nine times at two-hour intervals from the configured workday start (including slots after midnight). Keyboard shortcuts, Enter, numpad, and snooze-all keep each group's original time.
 - **Woken-tabs list**: each row now has its own **Snooze** button that opens the snooze panel for just that tab, so you don't have to tick its checkbox first. Your checkbox selections are left as they were.
 - **Woken-tabs list**: repeating tabs now show the repeat icon and their schedule (e.g. "Every Mon, Wed at 9:00 am") next to the site name. Each row has an **×** to remove just that tab; an **Undo** bar stays for 5 seconds after (several quick removals undo together).
 - **Last pick is outlined**: in the Later Today, Next Week and Next Month grids, the slot you chose last time (by position) gets a charcoal border, so you can repeat it at a glance. Saved per tile in `localStorage` (`tsLastQuickTime`).
