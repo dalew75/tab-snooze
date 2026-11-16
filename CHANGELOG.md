@@ -4,6 +4,9 @@
 
 ## [Unreleased]
 
+- Added Settings → **Visible Snooze Groups** with nine switches. Hidden groups are removed from snooze dialogs; letter shortcuts retain their group and arrow/numpad navigation follows visible tiles. At least one of the six always-available timed presets stays enabled for snooze-all.
+- Replaced **Someday** with **This Week**: nine slots spread across work hours from the day after tomorrow until the configured weekend, using workday start/evening settings. The tile hides when no slots remain.
+
 - **Hover-revealed snooze times**: multi-time groups show their original icon/title tile until hovered. **This Evening/Tomorrow Eve** now offers nine times at 30-minute intervals from the configured evening start, and **Tomorrow** offers nine times at two-hour intervals from the configured workday start (including slots after midnight). Keyboard shortcuts, Enter, numpad, and snooze-all keep each group's original time.
 - **Woken-tabs list**: each row now has its own **Snooze** button that opens the snooze panel for just that tab, so you don't have to tick its checkbox first. Your checkbox selections are left as they were.
 - **Woken-tabs list**: repeating tabs now show the repeat icon and their schedule (e.g. "Every Mon, Wed at 9:00 am") next to the site name. Each row has an **×** to remove just that tab; an **Undo** bar stays for 5 seconds after (several quick removals undo together).
