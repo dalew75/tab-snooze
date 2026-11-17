@@ -4,6 +4,8 @@
 
 ## [Unreleased]
 
+- **Press and hold for snooze times**: multi-time tiles no longer swap to their 3×3 grid on hover. A quick click snoozes to the tile's default time, as in upstream. Press and hold (~350 ms) to show the grid, slide onto a time, and release to pick it. To cancel, drag off the tile, release anywhere that isn't a time, or press Esc.
+
 - **Woken-tabs list** automatically closes three seconds after it becomes empty. Per-row dismissal keeps the five-second Undo window first. New items cancel the close timer, and storage is checked again before closing.
 
 - Added Settings → **Visible Snooze Groups** with nine switches. Hidden groups are removed from snooze dialogs; letter shortcuts retain their group and arrow/numpad navigation follows visible tiles. At least one of the six always-available timed presets stays enabled for snooze-all.
