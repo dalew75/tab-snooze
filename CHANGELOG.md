@@ -4,6 +4,8 @@
 
 ## [Unreleased]
 
+- **Already-snoozed highlight**: when you open the popup on a tab whose URL is already snoozed, an orange banner shows when it's due. The tile it was snoozed with (e.g. This Weekend, Repeatedly, Pick a Date) gets an orange border and a "Snoozed: Sat 6:00p" tag, and the exact slot is filled orange in its press-and-hold grid. Picking a time now **replaces** the old snooze instead of adding a second one. This applies to the popup, selected tabs, the woken-tabs list and Repeat last snooze. Picking the same time again keeps the existing snooze.
+
 - **Press and hold for snooze times**: multi-time tiles no longer swap to their 3×3 grid on hover. A quick click snoozes to the tile's default time, as in upstream. Press and hold (~350 ms) to show the grid, slide onto a time, and release to pick it. To cancel, drag off the tile, release anywhere that isn't a time, or press Esc.
 
 - **Woken-tabs list** automatically closes three seconds after it becomes empty. Per-row dismissal keeps the five-second Undo window first. New items cancel the close timer, and storage is checked again before closing.

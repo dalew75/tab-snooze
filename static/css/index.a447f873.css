@@ -602,6 +602,13 @@ textarea,
 .ts-qt:hover{background:var(--ts-qt-primary);color:#fff}
 .ts-qt.ts-qt-last{box-shadow:inset 0 0 0 2px #36454f}
 .ts-qt-pressed .ts-qt.ts-qt-last{box-shadow:none}
+/* [existing-snooze] fork: highlight where this tab is already snoozed */
+button.ts-existing{box-shadow:inset 0 0 0 3px #e65100}
+button.ts-existing>div{font-weight:700}
+.ts-qt-wrap.ts-existing{box-shadow:inset 0 0 0 3px #e65100}
+.ts-existing-tag{position:absolute;left:50%;bottom:6px;transform:translateX(-50%);padding:1px 7px;border-radius:9px;background:#e65100;color:#fff;font-family:Roboto,Helvetica,Arial,sans-serif;font-size:11px;font-weight:700;line-height:16px;white-space:nowrap}
+.ts-qt.ts-qt-existing,.ts-qt.ts-qt-existing:hover{background:#e65100;color:#fff;font-weight:700;box-shadow:inset 0 0 0 2px #7a2b00}
+.ts-existing-banner{padding:8px 10px;text-align:center;font-family:Roboto,Helvetica,Arial,sans-serif;font-size:13.5px;font-weight:600;color:#fff;background:#e65100}
 .ts-qt-day{font-size:9px;font-weight:400;opacity:.75}
 .ts-qt-pressed .ts-qt{background:rgba(255,255,255,.15);color:#fff;cursor:default}
 .ts-qt-pressed .ts-qt.ts-qt-picked{background:rgba(255,255,255,.45)}
