@@ -4,6 +4,8 @@
 
 ## [Unreleased]
 
+- **Park tabs in the list**: a bar under the snooze grid moves tabs straight into the waiting list page (the woken-tabs list), with no wake time. **Park N selected** (`K`) shows when several tabs are selected. **Park all other tabs** (`O`) clears every other unpinned tab in the window, so you can focus on the current one. It's also shown in snooze-all. The list page opens in the background and parked rows get a "Parked" tag. Click a row to reopen it, or snooze or remove it as usual. The list is now titled "Tabs waiting".
+
 - **Keep it** button on the "Already snoozed" banner: click it to keep the existing snooze and add the new time as well. Click **Replace instead** to switch back. Replacing is still the default.
 - **Already-snoozed highlight**: when you open the popup on a tab whose URL is already snoozed, an orange banner shows when it's due. The tile it was snoozed with (e.g. This Weekend, Repeatedly, Pick a Date) gets an orange border and a "Snoozed: Sat 6:00p" tag, and the exact slot is filled orange in its press-and-hold grid. Picking a time now **replaces** the old snooze instead of adding a second one. This applies to the popup, selected tabs, the woken-tabs list and Repeat last snooze. Picking the same time again keeps the existing snooze.
 
